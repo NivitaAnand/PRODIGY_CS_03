@@ -1,1 +1,2 @@
 # PRODIGY_CS_03
+Password Complexity Checker is a simple yet powerful tool designed to assess the strength of passwords. By analyzing various aspects such as length, use of upper and lower case letters, numbers, and special characters, it provides a comprehensive complexity score. This ensures that your passwords meet the highest security standards, protecting your sensitive information from potential breaches.
