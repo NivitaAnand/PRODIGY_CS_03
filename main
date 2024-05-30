@@ -1,0 +1,64 @@
+import re
+
+def check_password_strength(password):
+    # Criteria for the password
+    length_criteria = len(password) >= 8
+    uppercase_criteria = bool(re.search(r'[A-Z]', password))
+    lowercase_criteria = bool(re.search(r'[a-z]', password))
+    number_criteria = bool(re.search(r'[0-9]', password))
+    special_char_criteria = bool(re.search(r'[!@#$%^&*(),.?":{}|<>]', password))
+
+    # Initialize feedback list
+    feedback = []
+
+    # Check each criteria and provide feedback
+    if length_criteria:
+        feedback.append(" Length is sufficient (8 or more characters)")
+    else:
+        feedback.append("Length is too short (less than 8 characters)")
+
+    if uppercase_criteria:
+        feedback.append(" Contains uppercase letters")
+    else:
+        feedback.append(" Missing uppercase letters")
+
+    if lowercase_criteria:
+        feedback.append(" Contains lowercase letters")
+    else:
+        feedback.append(" Missing lowercase letters")
+
+    if number_criteria:
+        feedback.append(" Contains numbers")
+    else:
+        feedback.append(" Missing numbers")
+
+    if special_char_criteria:
+        feedback.append(" Contains special characters")
+    else:
+        feedback.append(" Missing special characters")
+
+    # Calculate the strength score
+    score = sum([length_criteria, uppercase_criteria, lowercase_criteria, number_criteria, special_char_criteria])
+
+    # Provide overall feedback based on the score
+    if score == 5:
+        strength = "Very Strong"
+    elif score == 4:
+        strength = "Strong"
+    elif score == 3:
+        strength = "Medium"
+    elif score == 2:
+        strength = "Weak"
+    else:
+        strength = "Very Weak"
+
+    return strength, feedback
+
+
+password = input("Enter a password to check its strength: ")
+strength, feedback = check_password_strength(password)
+
+print(f"Password Strength: {strength}")
+print("Feedback:")
+for line in feedback:
+    print(line)
